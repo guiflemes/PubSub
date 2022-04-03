@@ -3,6 +3,7 @@ from unittest import TestCase, mock
 import dataclasses
 from pub_sub import dispatch_events_output
 from pub_sub import Publisher
+from publisher import Publisher
 
 
 class MySubscriber:
@@ -21,6 +22,7 @@ class DispatchEventsTestCase(TestCase):
     def setUp(self) -> None:
         Publisher().register(event="my_event", subscriber=MySubscriber())
         Publisher().register(event="my_event", subscriber=OtherSubscriber())
+
 
     @mock.patch("pub_sub.dispatcher.Publisher.dispatch")
     def test_dispatch_events(self, mock_dispatch: mock.MagicMock) -> None:

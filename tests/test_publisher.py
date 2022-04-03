@@ -1,10 +1,9 @@
 import dataclasses
+from pub_sub import Publisher
 from unittest import TestCase, mock
 from typing import Any
-from pub_sub import Publisher
 from threading import Thread
-
-from pub_sub.errors import EventNotRegisteredError
+from publisher import Publisher
 
 
 class SubscriptionOne:
@@ -53,9 +52,8 @@ class PublisherTestCase(TestCase):
 
         for t in test_cases:
             with self.subTest(msg=t.desc, event=t.event):
-                with self.assertRaises(EventNotRegisteredError) as ctx:
-                    self.publisher.get_subscribers("error")
-                    self.assertIn(f"No event called '{t.event}' registered.", ctx)
+                with self.assertRaises(KeyError):
+                    self.publisher.get_subscribers(test_cases[0].event)
 
     def test_register(self) -> None:
         sub_one = SubscriptionOne("sub_one")

@@ -1,14 +1,13 @@
 [tool.poetry]
-name = "pubSub"
+name = "pythonproject1"
 version = "0.1.0"
 description = ""
 authors = ["guilherme <guilherme.1995lemes@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.6.2"
+python = "^3.10"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
