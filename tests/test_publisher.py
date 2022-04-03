@@ -1,10 +1,10 @@
 import dataclasses
-from pub_sub import Publisher
+from pub_sub_events import Publisher
 from unittest import TestCase, mock
 from typing import Any
 from threading import Thread
 
-from pub_sub.errors import EventNotRegisteredError
+from pub_sub_events.errors import EventNotRegisteredError
 
 
 class SubscriptionOne:

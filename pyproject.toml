@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pythonproject1"
+name = "pub_sub_events"
 version = "0.1.0"
 description = ""
 authors = ["guilherme <guilherme.1995lemes@gmail.com>"]

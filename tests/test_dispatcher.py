@@ -1,8 +1,8 @@
 from typing import Any
 from unittest import TestCase, mock
 import dataclasses
-from pub_sub import dispatch_events_output
-from pub_sub import Publisher
+from pub_sub_events import dispatch_events_output
+from pub_sub_events import Publisher
 
 
 class MySubscriber:
@@ -22,7 +22,7 @@ class DispatchEventsTestCase(TestCase):
         Publisher().register(event="my_event", subscriber=MySubscriber())
         Publisher().register(event="my_event", subscriber=OtherSubscriber())
 
-    @mock.patch("pub_sub.dispatcher.Publisher.dispatch")
+    @mock.patch("pub_sub_events.dispatcher.Publisher.dispatch")
     def test_dispatch_events(self, mock_dispatch: mock.MagicMock) -> None:
         @dispatch_events_output({"my_event"})
         def func(value: Any) -> Any:
