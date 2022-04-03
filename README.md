@@ -26,11 +26,9 @@ class SubscriberCeleryTask(Task):
     def __init__(self) -> None:
         current_app.tasks.register(self)
 
-    @abc.abstractmethod
     def run(self, message: str) -> None:
         print(message)
 
-    @abc.abstractmethod
     def to_json(self, message: MyClass) -> json:
         return json.dumps(dataclasses.asdict(message))
 
