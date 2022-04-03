@@ -1,5 +1,7 @@
 from typing import Dict, Callable, Any
-from i_subscriber import Subscriber
+
+from .errors import EventNotRegisteredError
+from .i_subscriber import Subscriber
 import contextlib
 from threading import Lock
 
@@ -26,7 +28,10 @@ class Publisher(metaclass=PublisherMeta):
         self._events: Dict[str, Dict[Subscriber, Callable]] = {}
 
     def get_subscribers(self, event: str) -> Dict[Subscriber, Callable]:
-        return self._events[event]
+        try:
+            return self._events[event]
+        except KeyError:
+            raise EventNotRegisteredError(event)
 
     def register(self, event: str, subscriber: Subscriber, callback: Callable = None) -> None:
         if not callback:

@@ -1,3 +1,5 @@
+import dataclasses
+from pub_sub import Publisher
 from unittest import TestCase, mock
 from typing import Any
 from threading import Thread
@@ -37,8 +39,21 @@ class PublisherTestCase(TestCase):
         self.assertEqual(subscriber, result_sub)
 
     def test_get_subscribers_raises_KeyError(self) -> None:
-        with self.assertRaises(KeyError):
-            self.publisher.get_subscribers("error")
+        @dataclasses.dataclass
+        class testCase:
+            desc: str
+            event: str
+
+        test_cases = [
+            testCase("event error 1", "error 1"),
+            testCase("event error 2", "error 2"),
+            testCase("event error 3", "error 3"),
+        ]
+
+        for t in test_cases:
+            with self.subTest(msg=t.desc, event=t.event):
+                with self.assertRaises(KeyError):
+                    self.publisher.get_subscribers(test_cases[0].event)
 
     def test_register(self) -> None:
         sub_one = SubscriptionOne("sub_one")
