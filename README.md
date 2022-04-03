@@ -3,7 +3,11 @@
 
 * This allows the registration of multiple subscribers per event.
 * Any event that implements the Subscriber interface can be registered at the publisher
+* Two events dispatchers
 
+# Installation
+
+`pip install pub-sub-events`
 
 # How to use?
 
