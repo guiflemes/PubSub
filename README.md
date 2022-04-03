@@ -55,7 +55,7 @@ With the subscribers implemented and registered we can decorate our methods or f
 ```python
 
 @dispatch_events_output({"event_print_my_class"})
-@dispatch_events_input({"event_print_my_class"})
+@dispatch_events_input({"event_print_name"})
 def create_my_class(name:str) -> MyClass:
     return MyClass(name)
 
